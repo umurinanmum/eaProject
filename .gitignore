@@ -8,3 +8,12 @@ projectName.iml
 /build
 /local.properties
 target/
+finalProject/.project
+finalProject/.settings/.jsdtscope
+finalProject/.settings/org.eclipse.jdt.core.prefs
+finalProject/.settings/org.eclipse.m2e.core.prefs
+finalProject/.settings/org.eclipse.wst.common.component
+finalProject/.settings/org.eclipse.wst.common.project.facet.core.xml
+finalProject/.settings/org.eclipse.wst.jsdt.ui.superType.container
+finalProject/.settings/org.eclipse.wst.jsdt.ui.superType.name
+finalProject/.settings/org.eclipse.wst.validation.prefs
