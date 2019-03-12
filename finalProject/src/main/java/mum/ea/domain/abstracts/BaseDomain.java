@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class BaseDomain {
+public abstract class BaseDomain {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
