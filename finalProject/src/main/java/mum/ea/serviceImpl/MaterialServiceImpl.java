@@ -2,9 +2,14 @@ package mum.ea.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import mum.ea.domain.Material;
 import mum.ea.service.MaterialService;
 
+@Service
+@Transactional
 public class MaterialServiceImpl implements MaterialService {
 
 	public void save(Material t) {

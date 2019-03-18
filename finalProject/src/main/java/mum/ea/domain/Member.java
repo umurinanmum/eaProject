@@ -3,28 +3,48 @@ package mum.ea.domain;
 import mum.ea.domain.abstracts.BaseDomain;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+
+import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.hibernate.validator.constraints.*;
+
 import java.util.List;
 
 @Entity
 public class Member extends BaseDomain {
-
+  
+	@NotEmpty(message="")
     private String firstname;
+	@NotEmpty(message="")
     private String lastname;
+	@NotEmpty
     private String username;
+	@NotEmpty
     private String password;
+   
 
 
     @OneToOne
     @JoinColumn(name = "id_member_type")
+    
+    @Valid
     private MemberType memberType;
 
     @ManyToMany(mappedBy = "joinedMembers")
+    
     private List<Course> courseList;
 
     @OneToMany(mappedBy = "instructor")
     private List<Course> teachingCourseList;
-
-    public String getFirstname() {
+    
+    
+    @OneToOne(mappedBy="member")
+    @Valid
+    @JsonManagedReference
+    private Profile profile;
+    
+    
+	public String getFirstname() {
         return firstname;
     }
 
@@ -79,4 +99,14 @@ public class Member extends BaseDomain {
     public void setTeachingCourseList(List<Course> teachingCourseList) {
         this.teachingCourseList = teachingCourseList;
     }
+
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
+
 }

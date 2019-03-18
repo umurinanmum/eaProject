@@ -2,6 +2,7 @@ package mum.ea.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import mum.ea.domain.Test;
 import mum.ea.dao.TestDao;
@@ -12,6 +13,7 @@ import java.util.List;
 
 
 @Service
+@Transactional
 
 public class TestServiceImpl implements TestService {
 

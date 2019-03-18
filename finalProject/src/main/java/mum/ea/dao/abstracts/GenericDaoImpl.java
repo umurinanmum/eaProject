@@ -9,7 +9,7 @@ import java.util.List;
 public abstract class GenericDaoImpl<TDomain extends BaseDomain> implements GenericDao<TDomain> {
 
     @PersistenceContext
-    private EntityManager entityManager;
+	protected EntityManager entityManager;
 
     protected Class<TDomain> domainClass;
 

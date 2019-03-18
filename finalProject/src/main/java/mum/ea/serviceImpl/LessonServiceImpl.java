@@ -2,9 +2,14 @@ package mum.ea.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import mum.ea.domain.Lesson;
 import mum.ea.service.LessonService;
 
+@Service
+@Transactional
 public class LessonServiceImpl implements LessonService {
 
 	public void save(Lesson t) {
