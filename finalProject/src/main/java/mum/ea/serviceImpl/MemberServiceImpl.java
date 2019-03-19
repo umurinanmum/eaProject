@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
 
 	public Member findById(Long id) {
 		
-		return memberDao.findById(id);
+		return memberDao.findOne(id);
 	}
 
 	public List<Member> findAll() {
