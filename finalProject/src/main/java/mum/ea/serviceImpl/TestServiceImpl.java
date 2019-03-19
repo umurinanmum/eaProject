@@ -33,7 +33,7 @@ public class TestServiceImpl implements TestService {
     }
 
     public Test findById(Long id) {
-       return testDao.findById(id);
+       return testDao.findOne(id);
     }
 
     public List<Test> findAll() {

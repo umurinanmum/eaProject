@@ -1,10 +1,10 @@
 package mum.ea.serviceImpl;
-
-import java.util.List;
-
+ 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+ 
+import mum.ea.dao.MaterialDao; 
 import mum.ea.domain.Material;
 import mum.ea.service.MaterialService;
 
@@ -12,29 +12,32 @@ import mum.ea.service.MaterialService;
 @Transactional
 public class MaterialServiceImpl implements MaterialService {
 
+	@Autowired 
+	MaterialDao materialDao;
+	
+	@Override
 	public void save(Material t) {
 		// TODO Auto-generated method stub
-
+		materialDao.save(t);
 	}
 
-	public void delete(Long id) {
-		// TODO Auto-generated method stub
-
-	}
-
+	@Override
 	public void update(Material t) {
 		// TODO Auto-generated method stub
-
+		materialDao.update(t);
 	}
 
-	public Material findById(Long id) {
+	@Override
+	public void delete(Long t) {
 		// TODO Auto-generated method stub
-		return null;
+		materialDao.delete(t);
 	}
 
-	public List<Material> findAll() {
+	@Override
+	public Material get(Long t) {
 		// TODO Auto-generated method stub
-		return null;
+		return 	materialDao.findOne(t);
 	}
+ 
 
 }

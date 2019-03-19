@@ -1,20 +1,26 @@
 package mum.ea.dao.abstracts;
 
-import mum.ea.domain.abstracts.BaseDomain;
-
 import java.util.List;
 
+public interface GenericDao<T> {
+	/**
+     * Method that returns the number of entries from a table that meet some
+     * criteria (where clause params)
+     * @param params
+     *  sql parameters
+     * @return the number of records meeting the criteria
+     */
 
-public interface GenericDao<TDomain extends BaseDomain> {
-
-    void save(TDomain t);
+    void save(T t);
 
     void delete(Long id);
 
-    void update(TDomain t);
+    T findOne(Long id);
 
-    TDomain findById(Long id);
+    T update(T t);   
+    
+    List<T> findAll();
 
-    List<TDomain> findAll();
-
+    
+    
 }

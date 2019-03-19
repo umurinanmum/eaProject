@@ -1,35 +1,57 @@
 package mum.ea.controller;
-
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import javax.servlet.http.HttpSession;
+  
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller; 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+ 
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import mum.ea.domain.Material;
 import mum.ea.service.MaterialService;
-import mum.ea.utilities.FileUpload;
+ 
 
 @Controller
-@RequestMapping("materials")
+@RequestMapping("/courses/{cid}/lessons/{lid}/materials")
 public class MaterialController {
- @Autowired
- MaterialService materialService;
+	 @Autowired
+	 MaterialService materialService;
+  
+
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+	public void processAddNewLesson(@RequestBody @Valid Material materialToBeAdded) {
+		materialService.save(materialToBeAdded);
+
+	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.PUT)
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+	public void processUpdateLesson(@RequestBody @Valid Material materialToBeUpdated) {
+		materialService.update(materialToBeUpdated);
+
+	}
+	
+	@RequestMapping(value = "/{lid}", method = RequestMethod.DELETE)
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+	public void processDeleteLesson(@PathVariable("mid") Long materialID) {
+		materialService.delete(materialID);
+
+	}
+	
+	@RequestMapping(value = "/{lid}", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+	public Material processGetLesson(@PathVariable("mid") Long materialID) {
+		return materialService.get(materialID);
+
+	}
+ 
+ /*
  @Autowired
  FileUpload fileUpload;
  
@@ -59,6 +81,6 @@ public class MaterialController {
  public String uploadStatus() {
 	 
 	 return "uploadStatus";
- }
+ }*/
 
 }

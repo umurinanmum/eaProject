@@ -6,36 +6,36 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-public abstract class GenericDaoImpl<TDomain extends BaseDomain> implements GenericDao<TDomain> {
+public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
     @PersistenceContext
 	protected EntityManager entityManager;
 
-    protected Class<TDomain> domainClass;
+    protected Class<T> domainClass;
 
 
-    public void save(TDomain t) {
+    public void save(T t) {
         entityManager.persist(t);
     }
 
-    private void delete(TDomain entity) {
+    private void delete(T entity) {
         entityManager.remove(entity);
     }
 
     public void delete(Long id) {
-        TDomain entity = findById(id);
+        T entity = findOne(id);
         delete(entity);
     }
 
-    public void update(TDomain t) {
-        entityManager.merge(t);
+    public T update(T t) {
+        return entityManager.merge(t);
     }
 
-    public TDomain findById(Long id) {
-        return (TDomain) entityManager.find( domainClass, id );
+    public T findOne(Long id) {
+        return (T) entityManager.find( domainClass, id );
     }
 
-    public List<TDomain> findAll() {
+    public List<T> findAll() {
         return entityManager.createQuery("from " + domainClass.getName()).getResultList();
     }
 }

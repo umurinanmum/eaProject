@@ -1,8 +1,12 @@
 package mum.ea.service;
+ 
+import mum.ea.domain.Lesson; 
 
-import mum.ea.domain.Lesson;
-import mum.ea.service.abstracts.EaCrudService;
+public interface LessonService {
 
-public interface LessonService extends EaCrudService<Lesson> {
-
+	public void save(Lesson lesson);
+	public void update(Lesson lesson); 
+	public void delete(Long lessonID);
+	public Lesson get(Long lessonID);
+	 
 }
